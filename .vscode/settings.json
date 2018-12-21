@@ -1,0 +1,7 @@
+{
+    "python.linting.pylintEnabled": false,
+    "python.envFile": "${workspaceFolder}/tensorflow/bin/python",
+
+    "python.pythonPath": "/Users/erick/.virtualenvs/tensorflow2/bin/python",
+    "python.linting.enabled": true
+}
