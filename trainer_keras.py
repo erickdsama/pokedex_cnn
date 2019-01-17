@@ -1,6 +1,6 @@
 import os
 import sys
-
+from index_classes import insert
 from tensorflow.python.keras import optimizers
 from tensorflow.python.keras import backend as K
 from tensorflow.python.keras.models import Sequential, load_model
@@ -10,8 +10,8 @@ from tensorflow.python.keras.preprocessing.image import ImageDataGenerator
 # limpiar sesiones que pudieron estar corriendo
 # K.clear_session()
 
-training_data = "./rawdata"
-validation_data = "./validation2"
+training_data = "./data"
+validation_data = "./validation"
 
 dirs = next(os.walk(training_data))[1]
 
@@ -19,8 +19,8 @@ dirs = next(os.walk(training_data))[1]
 epochs = 10
 target_size = 150, 150
 batch_size = 32
-steps = 50
-validatation_steps = 20
+steps = 60
+validatation_steps = 25
 conv1_filters = 32
 conv2_filters = 64
 conv3_filters = 128
@@ -48,9 +48,9 @@ generator_train = traing_imgs.flow_from_directory(
     batch_size=batch_size,
     class_mode='categorical'
 )
-print("trains=", len(generator_train), generator_train)
-print("data=", generator_train.class_indices)
-print(stop)
+data = generator_train.class_indices
+insert(data)
+
 generator_validate = traing_imgs.flow_from_directory(
     validation_data,
     target_size=target_size, 
